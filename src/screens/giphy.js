@@ -1,19 +1,22 @@
-const imgContainer = document.createElement('div');
-const img = document.createElement('img');
-imgContainer.classList.add('img-container');
-imgContainer.id = 'imgContainer';
-img.id = 'imgAPI';
-imgContainer.append(img);
-const baseUrl = 'https://api.giphy.com/v1/gifs/translate?api_key='
 
-function apiFetcher (searchQuery) {
-    const apiKey = 'NugrROQQ4DCqBqNviYzgvDib6kvifqf7';
-    fetch(`${baseUrl}${apiKey}&s=${searchQuery}`)
-    .then((response) => console.log(response.json()));
+async function apiFetcher(baseUrl, searchQuery) {
+  const apiKey = process.env.GIPHY_KEY;
+  await fetch(`${baseUrl}${apiKey}&s=${searchQuery}`, { mode: 'cors' })
+    .then((response) => response.json())
+    .then((response) => {
+      console.log(response.data.images.original.url);
+      return response.data.images.original.url;
+    }).catch((err) => console.log(err));
 }
 
-const imgCreator = (src) => {
+// make a function async to have a const response = await fetch(nextPokemons);
+// const data = await response.json();
 
-}
 
-export { apiFetcher }
+const imgCreator = (container, image, src) => {
+  console.log(src);
+  image.src = src;
+  return container.append(image);
+};
+
+export { apiFetcher, imgCreator };
