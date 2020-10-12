@@ -8,11 +8,12 @@ async function apiFetcher(baseUrl, searchQuery) {
 
 // In order to make the fetching work I:
 // changed the structure of the function to be async await instead of then()
-// I also changed the ImgCreator function to be async and await the src (which is the apiFetcher function)
+// I also changed the ImgCreator function to be async and await the src
+// (which is the apiFetcher function)
 
-async function imgCreator(container, image, src) {
+const imgCreator = async (container, image, src) => {
   image.src = await src;
   return container.append(image);
-}
+};
 
 export { apiFetcher, imgCreator };

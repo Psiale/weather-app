@@ -13,6 +13,8 @@ const baseUrl = 'https://api.giphy.com/v1/gifs/translate?api_key=';
 
 // check on how to make the fetch return to be a promise
 
-ApiCall.imgCreator(imgContainer, img, ApiCall.apiFetcher(baseUrl, 'pug'));
+ApiCall.imgCreator(imgContainer, img, ApiCall.apiFetcher(baseUrl, 'code')).catch(
+  (err) => console.error(err),
+);
 mainContainer.append(imgContainer);
 export default mainContainer;
