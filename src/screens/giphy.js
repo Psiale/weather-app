@@ -6,9 +6,9 @@ async function apiFetcher(baseUrl, searchQuery) {
   return data.data.images.original.url;
 }
 
-// make a function async to have a const response = await fetch(nextPokemons);
-// const data = await response.json();
-
+// In order to make the fetching work I:
+// changed the structure of the function to be async await instead of then()
+// I also changed the ImgCreator function to be async and await the src (which is the apiFetcher function)
 
 async function imgCreator(container, image, src) {
   image.src = await src;
