@@ -29,7 +29,6 @@ button.addEventListener('click', () => {
 });
 DomManipulation.enterShortcut(button, input);
 
-// ApiCall.imgCreator(imgContainer, img, ApiCall.apiFetcher(baseUrl, DomManipulation.inputHandler(input)))
 
 mainContainer.append(inputContainer, buttonContainer, imgContainer);
 export default mainContainer;
