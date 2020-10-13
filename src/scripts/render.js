@@ -1,4 +1,4 @@
-import * as ApiCall from '../screens/giphy';
+import * as ApiCall from '../screens/apiFetcher';
 import * as DomManipulation from './domManipulation';
 
 const mainContainer = document.createElement('div');
@@ -20,12 +20,13 @@ const img = document.createElement('img');
 imgContainer.id = 'imgContainer';
 img.id = 'imgAPI';
 img.src = '#';
-const baseUrl = 'https://api.giphy.com/v1/gifs/translate?api_key=';
+const baseUrl = 'https://api.openweathermap.org/data/2.5/weather?';
 
 // check on how to make the fetch return to be a promise
 button.addEventListener('click', () => {
-  ApiCall.imgCreator(imgContainer, img,
-    ApiCall.apiFetcher(baseUrl, DomManipulation.inputHandler(input)));
+  // ApiCall.imgCreator(imgContainer, img,
+  //   ApiCall.apiFetcher(baseUrl, DomManipulation.inputHandler(input)));
+  ApiCall.promiseToJson(baseUrl, DomManipulation.inputHandler(input));
 });
 DomManipulation.enterShortcut(button, input);
 

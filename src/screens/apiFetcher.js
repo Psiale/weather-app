@@ -1,7 +1,7 @@
 
 async function apiFetcher(baseUrl, searchQuery) {
   const apiKey = process.env.GIPHY_KEY;
-  const response = await fetch(`${baseUrl}${apiKey}&s=${searchQuery}`, { mode: 'cors' });
+  const response = await fetch(`${baseUrl}q=${searchQuery}&appid=${apiKey}`, { mode: 'cors' });
   const data = await response.json();
   return data.data.images.original.url;
 }
@@ -15,5 +15,11 @@ const imgCreator = async (container, image, src) => {
   image.src = await src;
   return container.append(image);
 };
+const promiseToJson = async (baseUrl, searchQuery, units = 'metric', lang = 'es') => {
+  const apiKey = process.env.WEATHER_API;
+  const response = await fetch(`${baseUrl}q=${searchQuery}&units=${units}&lang=${lang}&appid=${apiKey}`, { mode: 'cors' });
+  const data = await response.json();
+  console.log(data.weather);
+};
 
-export { apiFetcher, imgCreator };
+export { apiFetcher, imgCreator, promiseToJson };
