@@ -9,6 +9,7 @@ const inputContainer = document.createElement('div');
 const input = document.createElement('input');
 const buttonContainer = document.createElement('div');
 const button = document.createElement('button');
+let weatherObject;
 buttonContainer.id = 'buttonContainer';
 inputContainer.id = 'inputContainer';
 button.id = 'apiButton';
@@ -26,8 +27,12 @@ const baseUrl = 'https://api.openweathermap.org/data/2.5/weather?';
 button.addEventListener('click', () => {
   // ApiCall.imgCreator(imgContainer, img,
   //   ApiCall.apiFetcher(baseUrl, DomManipulation.inputHandler(input)));
-  ApiCall.promiseToJson(baseUrl, DomManipulation.inputHandler(input));
+  weatherObject = ApiCall.promiseToJson(baseUrl, DomManipulation.inputHandler(input), 'metric');
+  // ApiCall.weatherObjectConstructor();
 });
+// ApiCall.imgCreator(imgContainer, img, ApiCall.iconGetter(weatherObject.icon));
+console.log(weatherObject);
+// I need to create another function that uses weatherObject when the object is ready (async/await)
 DomManipulation.enterShortcut(button, input);
 
 
