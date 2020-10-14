@@ -7,5 +7,4 @@ function Weather(tempDescription, temp, tempMin, tempMax, icon) {
     icon,
   };
 }
-
 export default Weather;

@@ -22,19 +22,16 @@ imgContainer.id = 'imgContainer';
 img.id = 'imgAPI';
 img.src = '#';
 const baseUrl = 'https://api.openweathermap.org/data/2.5/weather?';
-
 // check on how to make the fetch return to be a promise
 button.addEventListener('click', () => {
   // ApiCall.imgCreator(imgContainer, img,
   //   ApiCall.apiFetcher(baseUrl, DomManipulation.inputHandler(input)));
-  weatherObject = ApiCall.promiseToJson(baseUrl, DomManipulation.inputHandler(input), 'metric');
+  weatherObject = ApiCall.promiseToJson(baseUrl, DomManipulation.inputHandler(input), 'metric')
+    .then((weather) => ApiCall.imgCreator(imgContainer, img, ApiCall.iconGetter(weather.icon)));
   // ApiCall.weatherObjectConstructor();
 });
-// ApiCall.imgCreator(imgContainer, img, ApiCall.iconGetter(weatherObject.icon));
-console.log(weatherObject);
+// ApiCall.imgCreator(imgContainer, img, ApiCall.iconGetter(weatherObject.icon
 // I need to create another function that uses weatherObject when the object is ready (async/await)
 DomManipulation.enterShortcut(button, input);
-
-
 mainContainer.append(inputContainer, buttonContainer, imgContainer);
 export default mainContainer;
