@@ -23,6 +23,7 @@ const weatherObjectConstructor = async (apiData) => {
   const weatherObject = await apiData;
   const weather = Weather(
     await weatherObject.weather[0].main,
+    await weatherObject.weather[0].description,
     await weatherObject.main.temp,
     await weatherObject.main.temp_min,
     await weatherObject.main.temp_max,
@@ -41,3 +42,11 @@ const promiseToJson = async (baseUrl, searchQuery, units = 'imperial') => {
 export {
   apiFetcher, imgCreator, promiseToJson, weatherObjectConstructor, iconGetter,
 };
+
+// Create 2 arrays, one that contains the weather string and another that
+// contains the images
+// Then create a function that takes a string and search for the proper image
+// on the other array
+
+// Or create an object that takes a string an a image, then a function that takes a string
+// and retrieves the image related to that object
