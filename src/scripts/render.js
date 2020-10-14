@@ -1,6 +1,7 @@
 import * as ApiCall from '../screens/apiFetcher';
 import * as DomManipulation from './domManipulation';
 
+// create an array with weatherImages here and a function to retrive them
 const mainContainer = document.createElement('div');
 mainContainer.classList.add('main-container');
 mainContainer.id = 'mainContainer';
