@@ -8,7 +8,6 @@ import hazy from '../images/haze.png';
 import rainy from '../images/rain.png';
 import snowy from '../images/snow.png';
 
-// create an array with weatherImages here and a function to retrive them
 const weatherArray = [WeatherImage('Clouds', cloudy),
   WeatherImage('Snow', snowy),
   WeatherImage('Rain', rainy),
@@ -16,21 +15,25 @@ const weatherArray = [WeatherImage('Clouds', cloudy),
   WeatherImage('Thunderstorm', stormy),
   WeatherImage('Clear', sunny),
   WeatherImage('Haze', hazy)];
-// const searchImage = (weather, array) => {
-//   array.filter(() => {
-//     array[i].name == weather
-//     return array[i].image;
-//   })
-// }
+
+// Change all document createElement and text to use the general purpose functions
 const mainContainer = document.createElement('div');
 mainContainer.classList.add('main-container');
 mainContainer.id = 'mainContainer';
 const imgContainer = document.createElement('div');
 const inputContainer = document.createElement('div');
+const mainInfoContainer = DomManipulation.elementGenerator('div', 'mainInfoContainer');
+const weatherDescriptionContainer = DomManipulation.elementGenerator('div', 'weatherDescriptionContainer');
+const weatherIconContainer = DomManipulation.elementGenerator('div', 'weatherIconContainer');
+const weatherIcon = DomManipulation.elementGenerator('img', 'weatherIcon');
+const weatherInfoDescriptionContainer = DomManipulation.elementGenerator('div', 'weatherInfoDescriptionContainer');
+const DAYTEXT = 'Today';
+const mainWeather = DomManipulation.elementGenerator('div', 'mainWeather');
+const mainTemp = DomManipulation.elementGenerator('div', 'mainTemp');
+const tempMinMaxContainer = DomManipulation.elementGenerator('div', 'tempMinMaxContainer');
 const input = document.createElement('input');
 const buttonContainer = document.createElement('div');
 const button = document.createElement('button');
-let weatherObject;
 buttonContainer.id = 'buttonContainer';
 inputContainer.id = 'inputContainer';
 button.id = 'apiButton';
@@ -41,21 +44,31 @@ inputContainer.append(input);
 const img = document.createElement('img');
 imgContainer.id = 'imgContainer';
 img.id = 'imgAPI';
-img.src = '#';
 const baseUrl = 'https://api.openweathermap.org/data/2.5/weather?';
-// check on how to make the fetch return to be a promise
 button.addEventListener('click', () => {
-  // ApiCall.imgCreator(imgContainer, img,
-  //   ApiCall.apiFetcher(baseUrl, DomManipulation.inputHandler(input)));
-  weatherObject = ApiCall.promiseToJson(baseUrl, DomManipulation.inputHandler(input), 'metric').then(
-    (weather) => ApiCall.imgCreator(
-      imgContainer, img, ApiCall.iconGetter(weather.mainWeather, weatherArray),
-    ),
+  ApiCall.promiseToJson(baseUrl, DomManipulation.inputHandler(input), 'metric').then(
+    (weather) => {
+      ApiCall.imgCreator(
+        imgContainer, img, ApiCall.iconGetter(weather.mainWeather, weatherArray),
+      );
+      mainWeather.append(DomManipulation.textGenerator(weather.mainWeather));
+      mainTemp.append(DomManipulation.textGenerator(`${weather.temp}°`));
+      ApiCall.imgCreator(weatherIconContainer, weatherIcon,
+        ApiCall.weatherIconGetter(weather.icon));
+      weatherInfoDescriptionContainer.append(DAYTEXT,
+        DomManipulation.textGenerator(weather.weatherDescription));
+      tempMinMaxContainer.append(DomManipulation.textGenerator(
+        `${weather.tempMax}° / ${weather.tempMin}°`,
+      ));
+    },
   );
-  // ApiCall.weatherObjectConstructor();
 });
-// ApiCall.imgCreator(imgContainer, img, ApiCall.iconGetter(weatherObject.icon
-// I need to create another function that uses weatherObject when the object is ready (async/await)
 DomManipulation.enterShortcut(button, input);
-mainContainer.append(inputContainer, buttonContainer, imgContainer);
+mainInfoContainer.append(mainWeather, mainTemp);
+weatherDescriptionContainer.append(
+  weatherIconContainer, weatherInfoDescriptionContainer, tempMinMaxContainer);
+mainContainer.append(
+  inputContainer, buttonContainer, mainInfoContainer,
+  imgContainer, weatherDescriptionContainer,
+);
 export default mainContainer;

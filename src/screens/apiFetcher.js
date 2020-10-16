@@ -6,24 +6,23 @@ async function apiFetcher(baseUrl, searchQuery) {
   const data = await response.json();
   return data.data.images.original.url;
 }
-// In order to make the fetching work I:
-// changed the structure of the function to be async await instead of then()
-// I also changed the ImgCreator function to be async and await the src
-// (which is the apiFetcher function)
 const iconGetter = (iconCode, array) => {
-  // const response = await fetch(`http://openweathermap.org/img/wn/${iconCode}@2x.png`);
-  // console.log(response.url);
-  // return response.url;
   // add the clause for else == haze
   const result = array.filter((weather) => weather.weatherName === iconCode);
   if (result) {
     console.log(result[0].weatherImage);
     return result[0].weatherImage;
   }
+  return Error("Couldn't find and icon with that code");
 };
+
+const weatherIconGetter = async (iconCode) => {
+  const response = await fetch(`http://openweathermap.org/img/wn/${iconCode}@2x.png`);
+  console.log(response.url);
+  return response.url;
+};
+
 const imgCreator = async (container, image, src) => {
-  // image.style.backgroundImage = `url(${await src})`;
-  // console.log(image.style.backgroundImage)
   image.src = await src;
   return container.append(image);
 };
@@ -48,13 +47,5 @@ const promiseToJson = async (baseUrl, searchQuery, units = 'imperial') => {
   return weatherObjectConstructor(data);
 };
 export {
-  apiFetcher, imgCreator, promiseToJson, weatherObjectConstructor, iconGetter,
+  apiFetcher, imgCreator, promiseToJson, weatherObjectConstructor, iconGetter, weatherIconGetter,
 };
-
-// Create 2 arrays, one that contains the weather string and another that
-// contains the images
-// Then create a function that takes a string and search for the proper image
-// on the other array
-
-// Or create an object that takes a string an a image, then a function that takes a string
-// and retrieves the image related to that object
