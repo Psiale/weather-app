@@ -10,12 +10,20 @@ async function apiFetcher(baseUrl, searchQuery) {
 // changed the structure of the function to be async await instead of then()
 // I also changed the ImgCreator function to be async and await the src
 // (which is the apiFetcher function)
-const iconGetter = async (iconCode) => {
-  const response = await fetch(`http://openweathermap.org/img/wn/${iconCode}@2x.png`);
-  console.log(response.url);
-  return response.url;
+const iconGetter = (iconCode, array) => {
+  // const response = await fetch(`http://openweathermap.org/img/wn/${iconCode}@2x.png`);
+  // console.log(response.url);
+  // return response.url;
+  // add the clause for else == haze
+  const result = array.filter((weather) => weather.weatherName === iconCode);
+  if (result) {
+    console.log(result[0].weatherImage);
+    return result[0].weatherImage;
+  }
 };
 const imgCreator = async (container, image, src) => {
+  // image.style.backgroundImage = `url(${await src})`;
+  // console.log(image.style.backgroundImage)
   image.src = await src;
   return container.append(image);
 };

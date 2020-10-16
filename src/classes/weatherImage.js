@@ -1,6 +1,6 @@
-function WeatherImage(weathername, weatherImage) {
+function WeatherImage(weatherName, weatherImage) {
   return {
-    weathername,
+    weatherName,
     weatherImage,
   };
 }

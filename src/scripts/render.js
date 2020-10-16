@@ -1,7 +1,27 @@
 import * as ApiCall from '../screens/apiFetcher';
 import * as DomManipulation from './domManipulation';
+import WeatherImage from '../classes/weatherImage';
+import cloudy from '../images/clouds.png';
+import stormy from '../images/storm.png';
+import sunny from '../images/clear.png';
+import hazy from '../images/haze.png';
+import rainy from '../images/rain.png';
+import snowy from '../images/snow.png';
 
 // create an array with weatherImages here and a function to retrive them
+const weatherArray = [WeatherImage('Clouds', cloudy),
+  WeatherImage('Snow', snowy),
+  WeatherImage('Rain', rainy),
+  WeatherImage('Drizzle', rainy),
+  WeatherImage('Thunderstorm', stormy),
+  WeatherImage('Clear', sunny),
+  WeatherImage('Haze', hazy)];
+// const searchImage = (weather, array) => {
+//   array.filter(() => {
+//     array[i].name == weather
+//     return array[i].image;
+//   })
+// }
 const mainContainer = document.createElement('div');
 mainContainer.classList.add('main-container');
 mainContainer.id = 'mainContainer';
@@ -27,8 +47,11 @@ const baseUrl = 'https://api.openweathermap.org/data/2.5/weather?';
 button.addEventListener('click', () => {
   // ApiCall.imgCreator(imgContainer, img,
   //   ApiCall.apiFetcher(baseUrl, DomManipulation.inputHandler(input)));
-  weatherObject = ApiCall.promiseToJson(baseUrl, DomManipulation.inputHandler(input), 'metric')
-    .then((weather) => ApiCall.imgCreator(imgContainer, img, ApiCall.iconGetter(weather.icon)));
+  weatherObject = ApiCall.promiseToJson(baseUrl, DomManipulation.inputHandler(input), 'metric').then(
+    (weather) => ApiCall.imgCreator(
+      imgContainer, img, ApiCall.iconGetter(weather.mainWeather, weatherArray),
+    ),
+  );
   // ApiCall.weatherObjectConstructor();
 });
 // ApiCall.imgCreator(imgContainer, img, ApiCall.iconGetter(weatherObject.icon
