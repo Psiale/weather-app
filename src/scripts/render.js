@@ -24,6 +24,8 @@ const mainContainer = document.createElement('div');
 mainContainer.classList.add('main-container');
 mainContainer.id = 'mainContainer';
 const imgContainer = document.createElement('div');
+const mainContainerTopChild = DomManipulation.elementGenerator('div', 'mainContainerTopChild');
+const mainContainerBottomChild = DomManipulation.elementGenerator('div', 'mainContainerBottomChild');
 const searchBarContainer = DomManipulation.elementGenerator('div', 'searchBarContainer');
 const inputContainer = DomManipulation.elementGenerator('div', 'inputContainer');
 const mainInfoContainer = DomManipulation.elementGenerator('div', 'mainInfoContainer');
@@ -50,7 +52,7 @@ const img = document.createElement('img');
 imgContainer.id = 'imgContainer';
 img.id = 'imgAPI';
 ApiCall.imgCreator(imgContainer, img, search);
-cityNameContainer.append(DomManipulation.textGenerator('Try searching the name of your city'));
+cityNameContainer.append(DomManipulation.textGenerator('Search a city'));
 const baseUrl = 'https://api.openweathermap.org/data/2.5/weather?';
 button.addEventListener('click', () => {
   cityNameContainer.innerHTML = '';
@@ -96,9 +98,10 @@ mainInfoContainer.append(cityNameContainer, mainWeather, mainTemp);
 weatherDescriptionContainer.append(
   weatherIconContainer, weatherInfoDescriptionContainer, tempMinMaxContainer,
 );
-
+mainContainerTopChild.append(searchBarContainer, mainInfoContainer);
+mainContainerBottomChild.append(imgContainer, weatherDescriptionContainer);
 mainContainer.append(
-  searchBarContainer, mainInfoContainer,
-  imgContainer, weatherDescriptionContainer,
+  mainContainerTopChild,
+  mainContainerBottomChild,
 );
 export default mainContainer;

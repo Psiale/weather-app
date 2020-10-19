@@ -1,3 +1,14 @@
+@import '../styles/fonts.css';
+
+* {
+    border: 1px red solid;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
 #mainContainer {
     width: 100%;
     height: 100vh;
@@ -6,8 +17,24 @@
     flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
+    #mainContainerTopChild,
+    #mainContainerBottomChild {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    #mainContainerTopChild {
+        width: 100%;
+        height: 35%;
+    }
+    #mainContainerBottomChild {
+        width: 80%;
+        height: 75%;
+    }
     #searchBarContainer {
-        width: auto;
+        margin: 20px 0;
+        width: 100%;
         display: flex;
         height: auto;
         justify-content: center;
@@ -16,13 +43,45 @@
             height: auto;
         }
         #buttonContainer {
-            width: 40%;
+            width: auto;
             height: auto;
+        }
+    }
+    #mainInfoContainer {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        
+        #cityNameContainer {
+            font-family: 'Play-Fair-Display', serif;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+            p {
+                padding: 0;
+                margin: 0;
+                font-size: 38px;
+            }
+        }
+        #mainWeather {
+            font-family: 'Roboto-Slab-SemiBold', serif;
+        }
+        #mainWeather, #mainTemp {
+            width: min-content;
+            height: min-content;
+            padding-left: 20px;
+            p {
+                font-size: 1.875rem;
+               margin: 0;
+               padding: 0; 
+            }
         }
     }
     #imgContainer {
         width: 100%;
-        height: 80vh;
+        height: 40%;
         #imgAPI {
             width: 100%;
             height: 100%;
@@ -30,6 +89,14 @@
         }
     }
     #weatherDescriptionContainer {
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+        background-color: pink;
+        margin: 20px 0;
         display: flex;
+        height: 60%;
+        div {
+            margin: 20px 0;
+        }
     }
 }
