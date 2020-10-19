@@ -8,6 +8,7 @@ import hazy from '../images/haze.png';
 import rainy from '../images/rain.png';
 import snowy from '../images/snow.png';
 import error from '../images/error.png';
+import search from '../images/search.png';
 
 const weatherArray = [WeatherImage('Clouds', cloudy),
   WeatherImage('Snow', snowy),
@@ -41,12 +42,15 @@ const button = document.createElement('button');
 button.id = 'apiButton';
 button.textContent = 'WEATHER!';
 input.id = 'apiInput';
+input.placeholder = 'Search a new city';
 buttonContainer.append(button);
 inputContainer.append(input);
 searchBarContainer.append(inputContainer, buttonContainer);
 const img = document.createElement('img');
 imgContainer.id = 'imgContainer';
 img.id = 'imgAPI';
+ApiCall.imgCreator(imgContainer, img, search);
+cityNameContainer.append(DomManipulation.textGenerator('Try searching the name of your city'));
 const baseUrl = 'https://api.openweathermap.org/data/2.5/weather?';
 button.addEventListener('click', () => {
   cityNameContainer.innerHTML = '';
