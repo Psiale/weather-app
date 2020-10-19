@@ -39,13 +39,28 @@ const weatherObjectConstructor = async (apiData) => {
   console.log(weather);
   return weather;
 };
+
+const weatherObjectError = async (data) => {
+  const response = await data;
+  const weather = Weather(
+    await response.message,
+    '',
+    '',
+    '',
+    '',
+    '',
+  );
+  return weather;
+};
+
 const promiseToJson = async (baseUrl, searchQuery, units = 'imperial') => {
   const apiKey = process.env.WEATHER_API;
   const response = await fetch(`${baseUrl}q=${searchQuery}&units=${units}&appid=${apiKey}`, { mode: 'cors' });
   const data = await response.json();
-  console.log(data);
+  if (data.cod === '404') return weatherObjectError(data);
   return weatherObjectConstructor(data);
 };
+
 export {
   apiFetcher, imgCreator, promiseToJson, weatherObjectConstructor, iconGetter, weatherIconGetter,
 };

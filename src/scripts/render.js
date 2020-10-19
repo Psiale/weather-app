@@ -7,6 +7,7 @@ import sunny from '../images/clear.png';
 import hazy from '../images/haze.png';
 import rainy from '../images/rain.png';
 import snowy from '../images/snow.png';
+import error from '../images/error.png';
 
 const weatherArray = [WeatherImage('Clouds', cloudy),
   WeatherImage('Snow', snowy),
@@ -14,7 +15,8 @@ const weatherArray = [WeatherImage('Clouds', cloudy),
   WeatherImage('Drizzle', rainy),
   WeatherImage('Thunderstorm', stormy),
   WeatherImage('Clear', sunny),
-  WeatherImage('Haze', hazy)];
+  WeatherImage('Haze', hazy),
+  WeatherImage('city not found', error)];
 
 // Change all document createElement and text to use the general purpose functions
 const mainContainer = document.createElement('div');
@@ -53,25 +55,37 @@ button.addEventListener('click', () => {
   weatherInfoDescriptionContainer.innerHTML = '';
   ApiCall.promiseToJson(baseUrl, DomManipulation.inputHandler(input), 'metric').then(
     (weather) => {
-      ApiCall.imgCreator(
-        imgContainer, img, ApiCall.iconGetter(weather.mainWeather, weatherArray),
-      );
-      mainWeather.append(DomManipulation.textGenerator(weather.mainWeather));
-      mainTemp.append(DomManipulation.textGenerator(`${weather.temp}°`));
-      ApiCall.imgCreator(weatherIconContainer, weatherIcon,
-        ApiCall.weatherIconGetter(weather.icon));
-      weatherInfoDescriptionContainer.append(DAYTEXT,
-        DomManipulation.textGenerator(weather.weatherDescription));
-      tempMinMaxContainer.append(DomManipulation.textGenerator(
-        `${weather.tempMax}° / ${weather.tempMin}°`,
-      ));
+      if (weather.mainWeather === 'city not found') {
+        mainWeather.append(DomManipulation.textGenerator(weather.mainWeather));
+        mainInfoContainer.append(
+          mainWeather,
+        );
+        ApiCall.imgCreator(
+          imgContainer, img, ApiCall.iconGetter(weather.mainWeather, weatherArray),
+        );
+      } else {
+        ApiCall.imgCreator(
+          imgContainer, img, ApiCall.iconGetter(weather.mainWeather, weatherArray),
+        );
+        mainWeather.append(DomManipulation.textGenerator(weather.mainWeather));
+        mainTemp.append(DomManipulation.textGenerator(`${weather.temp}°`));
+        ApiCall.imgCreator(weatherIconContainer, weatherIcon,
+          ApiCall.weatherIconGetter(weather.icon));
+        weatherInfoDescriptionContainer.append(DAYTEXT,
+          DomManipulation.textGenerator(weather.weatherDescription));
+        tempMinMaxContainer.append(DomManipulation.textGenerator(
+          `${weather.tempMax}° / ${weather.tempMin}°`,
+        ));
+      }
     },
   );
 });
 DomManipulation.enterShortcut(button, input);
 mainInfoContainer.append(mainWeather, mainTemp);
 weatherDescriptionContainer.append(
-  weatherIconContainer, weatherInfoDescriptionContainer, tempMinMaxContainer);
+  weatherIconContainer, weatherInfoDescriptionContainer, tempMinMaxContainer,
+);
+
 mainContainer.append(
   inputContainer, buttonContainer, mainInfoContainer,
   imgContainer, weatherDescriptionContainer,
