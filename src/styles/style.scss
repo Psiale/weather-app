@@ -5,4 +5,16 @@
     flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
+    #imgContainer {
+        width: 100%;
+        height: 80vh;
+        #imgAPI {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+    }
+    #weatherDescriptionContainer {
+        display: flex;
+    }
 }

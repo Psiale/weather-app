@@ -1,0 +1,3 @@
+error handling for city not found:
+It should return a message saying city not found and a error image
+Style the app

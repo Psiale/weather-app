@@ -1,6 +1,7 @@
-function Weather(tempDescription, temp, tempMin, tempMax, icon) {
+function Weather(mainWeather, weatherDescription, temp, tempMin, tempMax, icon) {
   return {
-    tempDescription,
+    mainWeather,
+    weatherDescription,
     temp,
     tempMin,
     tempMax,
