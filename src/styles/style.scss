@@ -1,8 +1,8 @@
 @import '../styles/fonts.css';
 
-* {
-    border: 1px red solid;
-}
+// * {
+//     border: 1px red solid;
+// }
 
 html, body {
     width: 100%;
@@ -13,7 +13,7 @@ html, body {
     width: 100%;
     height: 100vh;
     display: flex;
-    background-color: #fc4eab;
+    background-color: #f8b7da;
     flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
@@ -91,11 +91,11 @@ html, body {
     #weatherDescriptionContainer {
         border-top-left-radius: 20px;
         border-top-right-radius: 20px;
-        background-color: pink;
-        margin: 20px 0;
+        background-color: #ba176f;
         display: flex;
-        height: 60%;
+        height: min-content;
         div {
+            height: min-content;
             margin: 20px 0;
         }
     }
