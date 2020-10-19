@@ -18,7 +18,7 @@ const iconGetter = (iconCode, array) => {
 
 const weatherIconGetter = async (iconCode) => {
   const response = await fetch(`http://openweathermap.org/img/wn/${iconCode}@2x.png`);
-  console.log(response.url);
+  // console.log(response.url);
   return response.url;
 };
 
@@ -36,7 +36,6 @@ const weatherObjectConstructor = async (apiData) => {
     await weatherObject.main.temp_max,
     await weatherObject.weather[0].icon,
   );
-  console.log(weather);
   return weather;
 };
 

@@ -23,31 +23,33 @@ const mainContainer = document.createElement('div');
 mainContainer.classList.add('main-container');
 mainContainer.id = 'mainContainer';
 const imgContainer = document.createElement('div');
-const inputContainer = document.createElement('div');
+const searchBarContainer = DomManipulation.elementGenerator('div', 'searchBarContainer');
+const inputContainer = DomManipulation.elementGenerator('div', 'inputContainer');
 const mainInfoContainer = DomManipulation.elementGenerator('div', 'mainInfoContainer');
 const weatherDescriptionContainer = DomManipulation.elementGenerator('div', 'weatherDescriptionContainer');
 const weatherIconContainer = DomManipulation.elementGenerator('div', 'weatherIconContainer');
 const weatherIcon = DomManipulation.elementGenerator('img', 'weatherIcon');
 const weatherInfoDescriptionContainer = DomManipulation.elementGenerator('div', 'weatherInfoDescriptionContainer');
 const DAYTEXT = 'Today';
+const cityNameContainer = DomManipulation.elementGenerator('div', 'cityNameContainer');
 const mainWeather = DomManipulation.elementGenerator('div', 'mainWeather');
 const mainTemp = DomManipulation.elementGenerator('div', 'mainTemp');
 const tempMinMaxContainer = DomManipulation.elementGenerator('div', 'tempMinMaxContainer');
 const input = document.createElement('input');
-const buttonContainer = document.createElement('div');
+const buttonContainer = DomManipulation.elementGenerator('div', 'buttonContainer');
 const button = document.createElement('button');
-buttonContainer.id = 'buttonContainer';
-inputContainer.id = 'inputContainer';
 button.id = 'apiButton';
 button.textContent = 'WEATHER!';
 input.id = 'apiInput';
 buttonContainer.append(button);
 inputContainer.append(input);
+searchBarContainer.append(inputContainer, buttonContainer);
 const img = document.createElement('img');
 imgContainer.id = 'imgContainer';
 img.id = 'imgAPI';
 const baseUrl = 'https://api.openweathermap.org/data/2.5/weather?';
 button.addEventListener('click', () => {
+  cityNameContainer.innerHTML = '';
   mainWeather.innerHTML = '';
   mainTemp.innerHTML = '';
   weatherIconContainer.innerHTML = '';
@@ -67,6 +69,9 @@ button.addEventListener('click', () => {
         ApiCall.imgCreator(
           imgContainer, img, ApiCall.iconGetter(weather.mainWeather, weatherArray),
         );
+        cityNameContainer.append(
+          DomManipulation.textGenerator(DomManipulation.inputHandler(input)),
+        );
         mainWeather.append(DomManipulation.textGenerator(weather.mainWeather));
         mainTemp.append(DomManipulation.textGenerator(`${weather.temp}°`));
         ApiCall.imgCreator(weatherIconContainer, weatherIcon,
@@ -77,17 +82,19 @@ button.addEventListener('click', () => {
           `${weather.tempMax}° / ${weather.tempMin}°`,
         ));
       }
-    },
+      input.value = '';
+    }
+    ,
   );
 });
 DomManipulation.enterShortcut(button, input);
-mainInfoContainer.append(mainWeather, mainTemp);
+mainInfoContainer.append(cityNameContainer, mainWeather, mainTemp);
 weatherDescriptionContainer.append(
   weatherIconContainer, weatherInfoDescriptionContainer, tempMinMaxContainer,
 );
 
 mainContainer.append(
-  inputContainer, buttonContainer, mainInfoContainer,
+  searchBarContainer, mainInfoContainer,
   imgContainer, weatherDescriptionContainer,
 );
 export default mainContainer;
