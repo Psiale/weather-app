@@ -9,11 +9,11 @@ async function apiFetcher(baseUrl, searchQuery) {
 const iconGetter = (iconCode, array) => {
   // add the clause for else == haze
   const result = array.filter((weather) => weather.weatherName === iconCode);
-  if (result) {
-    console.log(result[0].weatherImage);
+  if (result.length > 0) {
+    // console.log(result.length > 0);
     return result[0].weatherImage;
   }
-  return Error("Couldn't find and icon with that code");
+  return array[6].weatherImage;
 };
 
 const weatherIconGetter = async (iconCode) => {

@@ -46,6 +46,11 @@ imgContainer.id = 'imgContainer';
 img.id = 'imgAPI';
 const baseUrl = 'https://api.openweathermap.org/data/2.5/weather?';
 button.addEventListener('click', () => {
+  mainWeather.innerHTML = ''
+  mainTemp.innerHTML = ''
+  weatherIconContainer.innerHTML = '';
+  tempMinMaxContainer.innerHTML = '';
+  weatherInfoDescriptionContainer.innerHTML = '';
   ApiCall.promiseToJson(baseUrl, DomManipulation.inputHandler(input), 'metric').then(
     (weather) => {
       ApiCall.imgCreator(
