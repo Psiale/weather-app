@@ -14,6 +14,11 @@ const enterShortcut = (btn, element) => {
   });
 };
 
+const capitalize = (s) => {
+  if (typeof s !== 'string') return '';
+  return s.charAt(0).toUpperCase() + s.slice(1);
+};
+
 const elementGenerator = (htmlElem, elemId = null, elemClass = null) => {
   const createdElement = document.createElement(`${htmlElem}`);
   if (elemClass !== null) createdElement.classList.add(elemClass);
@@ -26,6 +31,12 @@ const textGenerator = (text) => {
   if (text !== '') textElement.textContent = text;
   return textElement;
 };
+
+
+function convertToF(celsius) {
+  return celsius * (9 / 5 + 32);
+}
+
 export {
-  inputHandler, enterShortcut, elementGenerator, textGenerator,
+  inputHandler, enterShortcut, elementGenerator, textGenerator, capitalize, convertToF,
 };

@@ -13,7 +13,7 @@ html, body {
     width: 100%;
     height: 100vh;
     display: flex;
-    background-color: #f8b7da;
+    background-color: #f8e2ee;
     flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
@@ -37,7 +37,8 @@ html, body {
         width: 100%;
         display: flex;
         height: auto;
-        justify-content: center;
+        flex-flow: row wrap;
+        justify-content: space-around;
         #inputContainer {
             width: auto;
             height: auto;
@@ -45,6 +46,60 @@ html, body {
         #buttonContainer {
             width: auto;
             height: auto;
+        }
+    }
+
+    #toggleContainer {
+        #switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+        #toggleInput {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #2f2e41ff;
+            -webkit-transition: .4s;
+            transition: .4s;
+            &::before {
+                position: absolute;
+                content: "";
+                height: 26px;
+                width: 26px;
+                left: 4px;
+                bottom: 4px;
+                background-color: white;
+                -webkit-transition: .4s;
+                transition: .4s;
+            }
+        }
+        #toggleInput:checked + .slider {
+            background-color: #ba176fff;
+        }
+        #toggleInput:focus + .slider {
+            box-shadow: 0 0 1px #2196F3;
+          }
+
+        #toggleInput:checked + .slider:before {
+            -webkit-transform: translateX(26px);
+            -ms-transform: translateX(26px);
+            transform: translateX(26px);
+          }
+        .round {
+            border-radius: 34px;
+            &::before {
+                border-radius: 50%;
+            }
         }
     }
     #mainInfoContainer {
@@ -92,7 +147,7 @@ html, body {
         border-top-left-radius: 20px;
         border-top-right-radius: 20px;
         background-color: #ba176f;
-        display: flex;
+        display: none;
         height: min-content;
         div {
             height: min-content;
