@@ -29,13 +29,18 @@ const mainContainerBottomChild = DomManipulation.elementGenerator('div', 'mainCo
 const searchBarContainer = DomManipulation.elementGenerator('div', 'searchBarContainer');
 const inputContainer = DomManipulation.elementGenerator('div', 'inputContainer');
 const toggleContainer = DomManipulation.elementGenerator('div', 'toggleContainer');
+const celsiusContainer = DomManipulation.elementGenerator('div', 'celsiusContainer', 'tempText');
+celsiusContainer.append(DomManipulation.textGenerator('Celsius'));
+const fahrenheitContainer = DomManipulation.elementGenerator('div', 'fahrenheitContainer', 'tempText');
+fahrenheitContainer.append(DomManipulation.textGenerator('Fahrenheit'));
 const toggleLabel = DomManipulation.elementGenerator('label', 'switch');
 const toggleInput = DomManipulation.elementGenerator('input', 'toggleInput');
+
 toggleInput.type = 'checkbox';
 const toggleSpan = DomManipulation.elementGenerator('span', 'toggleSpan', 'slider');
 toggleSpan.classList.add('round');
 toggleLabel.append(toggleInput, toggleSpan);
-toggleContainer.append(toggleLabel);
+toggleContainer.append(celsiusContainer, toggleLabel, fahrenheitContainer);
 const mainInfoContainer = DomManipulation.elementGenerator('div', 'mainInfoContainer');
 const weatherDescriptionContainer = DomManipulation.elementGenerator('div', 'weatherDescriptionContainer');
 const weatherIconContainer = DomManipulation.elementGenerator('div', 'weatherIconContainer');
@@ -55,7 +60,7 @@ input.id = 'apiInput';
 input.placeholder = 'Search a new city';
 buttonContainer.append(button);
 inputContainer.append(input);
-searchBarContainer.append(inputContainer, toggleContainer, buttonContainer);
+searchBarContainer.append(inputContainer, buttonContainer);
 const img = document.createElement('img');
 imgContainer.id = 'imgContainer';
 img.id = 'imgAPI';
@@ -102,6 +107,8 @@ button.addEventListener('click', () => {
           weatherIconContainer, weatherInfoDescriptionContainer, tempMinMaxContainer,
         );
         mainContainerBottomChild.append(imgContainer, weatherDescriptionContainer);
+        // mainContainerTopChild.insertBefore(toggleContainer, mainContainerTopChild.childNodes[2]);
+        mainInfoContainer.insertBefore(toggleContainer, mainInfoContainer.childNodes[1]);
       }
       weatherDescriptionContainer.style.display = 'flex';
       input.value = '';
