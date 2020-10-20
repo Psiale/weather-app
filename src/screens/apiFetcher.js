@@ -18,6 +18,9 @@ const iconGetter = (iconCode, array) => {
 
 const weatherIconGetter = async (iconCode) => {
   const response = await fetch(`http://openweathermap.org/img/wn/${iconCode}@2x.png`);
+  // if (iconCode === '13d') {
+
+  // }
   // console.log(response.url);
   return response.url;
 };

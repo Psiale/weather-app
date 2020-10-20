@@ -29,7 +29,7 @@ html, body {
         height: 35%;
     }
     #mainContainerBottomChild {
-        width: 80%;
+        width: 90%;
         height: 75%;
     }
     #searchBarContainer {
@@ -54,6 +54,10 @@ html, body {
         width: 100%;
         justify-content: center;
         align-items: center;
+        .tempText {
+            font-family: 'Roboto-Slab-Regular', serif ;
+            font-size: 1.2rem;
+        }
         #switch {
             position: relative;
             display: inline-block;
@@ -151,13 +155,28 @@ html, body {
         }
     }
     #weatherDescriptionContainer {
+        font-family: 'Roboto-Slab-Regular', serif;
+        font-size: 1.1rem;
         border-top-left-radius: 20px;
         border-top-right-radius: 20px;
         background-color: #ba176f;
         display: none;
         height: min-content;
         div {
+            color: white;
             height: min-content;
+            width: 28%;
+            margin: 20px 8px;
+        }
+        #tempMinMaxContainer {
+            font-size: 1rem;
+            width: 30%;
+            height: 55%;
+            display: flex;
+            align-items: flex-end;
+        }
+        #weatherIconContainer {
+            width: max-content;
             margin: 20px 0;
         }
     }
