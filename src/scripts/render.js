@@ -113,7 +113,7 @@ button.addEventListener('click', () => {
           ));
         });
         ApiCall.imgCreator(weatherIconContainer, weatherIcon,
-          ApiCall.weatherIconGetter(weather.icon));
+          ApiCall.weatherIconGetter(weather.icon, weatherIcon));
         weatherInfoDescriptionContainer.append(DAYTEXT,
           DomManipulation.textGenerator(weather.weatherDescription));
         tempMinMaxContainer.append(DomManipulation.textGenerator(

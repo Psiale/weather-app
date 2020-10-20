@@ -16,11 +16,11 @@ const iconGetter = (iconCode, array) => {
   return array[6].weatherImage;
 };
 
-const weatherIconGetter = async (iconCode) => {
+const weatherIconGetter = async (iconCode, element) => {
   const response = await fetch(`http://openweathermap.org/img/wn/${iconCode}@2x.png`);
-  // if (iconCode === '13d') {
-
-  // }
+  if (iconCode === '13d') {
+    element.style.filter = 'invert(1)';
+  }
   // console.log(response.url);
   return response.url;
 };
