@@ -1,4 +1,3 @@
-implement the radio buttons for fahrenheit / celsius
-solve the overflowing
+create a new async await function to change values from fahrenheit to celsius and viceversa
 style the input and the buttons
 ask about fonts

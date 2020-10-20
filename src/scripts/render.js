@@ -40,7 +40,7 @@ toggleInput.type = 'checkbox';
 const toggleSpan = DomManipulation.elementGenerator('span', 'toggleSpan', 'slider');
 toggleSpan.classList.add('round');
 toggleLabel.append(toggleInput, toggleSpan);
-toggleContainer.append(celsiusContainer, toggleLabel, fahrenheitContainer);
+
 const mainInfoContainer = DomManipulation.elementGenerator('div', 'mainInfoContainer');
 const weatherDescriptionContainer = DomManipulation.elementGenerator('div', 'weatherDescriptionContainer');
 const weatherIconContainer = DomManipulation.elementGenerator('div', 'weatherIconContainer');
@@ -74,9 +74,11 @@ button.addEventListener('click', () => {
   weatherIconContainer.innerHTML = '';
   tempMinMaxContainer.innerHTML = '';
   weatherInfoDescriptionContainer.innerHTML = '';
-  ApiCall.promiseToJson(baseUrl, DomManipulation.inputHandler(input), 'metric').then(
+  let units = 'metric';
+  ApiCall.promiseToJson(baseUrl, DomManipulation.inputHandler(input), units).then(
     (weather) => {
       if (weather.mainWeather === 'city not found') {
+        toggleContainer.innerHTML = '';
         const capitalized = DomManipulation.capitalize(weather.mainWeather);
         mainWeather.append(DomManipulation.textGenerator(DomManipulation.capitalize(capitalized)));
         mainInfoContainer.append(
@@ -86,6 +88,7 @@ button.addEventListener('click', () => {
           imgContainer, img, ApiCall.iconGetter(weather.mainWeather, weatherArray),
         );
       } else {
+        toggleContainer.append(celsiusContainer, toggleLabel, fahrenheitContainer);
         ApiCall.imgCreator(
           imgContainer, img, ApiCall.iconGetter(weather.mainWeather, weatherArray),
         );
@@ -96,6 +99,19 @@ button.addEventListener('click', () => {
         );
         mainWeather.append(DomManipulation.textGenerator(weather.mainWeather));
         mainTemp.append(DomManipulation.textGenerator(`${weather.temp}°`));
+        toggleInput.addEventListener('click', async () => {
+          weather.temp = DomManipulation.unitConverter(weather.temp, units);
+          weather.tempMin = DomManipulation.unitConverter(weather.tempMin, units);
+          weather.tempMax = DomManipulation.unitConverter(weather.tempMax, units);
+          units = DomManipulation.unitSwapper(units);
+          mainTemp.innerHTML = '';
+          tempMinMaxContainer.innerHTML = '';
+          mainTemp.append(DomManipulation.textGenerator(`${weather.temp}°`));
+
+          tempMinMaxContainer.append(DomManipulation.textGenerator(
+            `${weather.tempMax}° / ${weather.tempMin}°`,
+          ));
+        });
         ApiCall.imgCreator(weatherIconContainer, weatherIcon,
           ApiCall.weatherIconGetter(weather.icon));
         weatherInfoDescriptionContainer.append(DAYTEXT,

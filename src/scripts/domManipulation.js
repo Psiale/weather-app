@@ -33,10 +33,21 @@ const textGenerator = (text) => {
 };
 
 
-function convertToF(celsius) {
-  return celsius * (9 / 5 + 32);
+function unitConverter(value, units) {
+  if (units === 'metric') {
+    const result = (value * 9 / 5) + 32;
+    return Math.round((result + Number.EPSILON) * 100) / 100;
+  }
+  const result = (value - 32) * (5 / 9);
+  return Math.round((result + Number.EPSILON) * 100) / 100;
+}
+
+function unitSwapper(value) {
+  (value === 'metric') ? value = 'imperial' : value = 'metric';
+  console.log(value);
+  return value;
 }
 
 export {
-  inputHandler, enterShortcut, elementGenerator, textGenerator, capitalize, convertToF,
+  inputHandler, enterShortcut, elementGenerator, textGenerator, capitalize, unitConverter, unitSwapper,
 };
