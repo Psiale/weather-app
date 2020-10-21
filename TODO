@@ -1,3 +1,2 @@
-create a new async await function to change values from fahrenheit to celsius and viceversa
 style the input and the buttons
-ask about fonts
+try to pass the unit as the argument for the fetch if fahrenheit is checked
