@@ -1,3 +1,2 @@
-error handling for city not found:
-It should return a message saying city not found and a error image
-Style the app
+style the input and the buttons
+try to pass the unit as the argument for the fetch if fahrenheit is checked

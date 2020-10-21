@@ -14,6 +14,11 @@ const enterShortcut = (btn, element) => {
   });
 };
 
+const capitalize = (s) => {
+  if (typeof s !== 'string') return '';
+  return s.charAt(0).toUpperCase() + s.slice(1);
+};
+
 const elementGenerator = (htmlElem, elemId = null, elemClass = null) => {
   const createdElement = document.createElement(`${htmlElem}`);
   if (elemClass !== null) createdElement.classList.add(elemClass);
@@ -26,6 +31,29 @@ const textGenerator = (text) => {
   if (text !== '') textElement.textContent = text;
   return textElement;
 };
+
+
+function unitConverter(value, units) {
+  if (units === 'metric') {
+    const result = (value * 9 / 5) + 32;
+    return Math.round(result);
+  }
+  const result = (value - 32) * (5 / 9);
+  return Math.round(result);
+}
+
+function unitSwapper(value) {
+  (value === 'metric') ? value = 'imperial' : value = 'metric';
+  // console.log(value);
+  return value;
+}
+const toggleColor = (toggleInput, value) => {
+  (value === 'metric') ? toggleInput.checked = false : toggleInput.checked = true;
+  // console.log(value);
+};
+
 export {
-  inputHandler, enterShortcut, elementGenerator, textGenerator,
+  inputHandler, enterShortcut,
+  elementGenerator, textGenerator, capitalize, unitConverter, unitSwapper,
+  toggleColor,
 };

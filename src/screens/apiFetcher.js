@@ -16,9 +16,13 @@ const iconGetter = (iconCode, array) => {
   return array[6].weatherImage;
 };
 
-const weatherIconGetter = async (iconCode) => {
+const weatherIconGetter = async (iconCode, element) => {
   const response = await fetch(`http://openweathermap.org/img/wn/${iconCode}@2x.png`);
-  console.log(response.url);
+  if (iconCode === '13d' || iconCode === '50d') {
+    element.style.filter = 'invert(1)';
+  } else {
+    element.style.filter = 'none';
+  }
   return response.url;
 };
 
@@ -36,7 +40,6 @@ const weatherObjectConstructor = async (apiData) => {
     await weatherObject.main.temp_max,
     await weatherObject.weather[0].icon,
   );
-  console.log(weather);
   return weather;
 };
 
