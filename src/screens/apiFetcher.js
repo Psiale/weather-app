@@ -17,7 +17,7 @@ const iconGetter = (iconCode, array) => {
 };
 
 const weatherIconGetter = async (iconCode, element) => {
-  const response = await fetch(`‘https://cors-anywhere.herokuapp.com/http://openweathermap.org/img/wn/${iconCode}@2x.png`, { mode: 'cors' });
+  const response = await fetch(`https://openweathermap.org/img/wn/${iconCode}@2x.png`);
   if (iconCode === '13d' || iconCode === '50d') {
     element.style.filter = 'invert(1)';
   } else {
