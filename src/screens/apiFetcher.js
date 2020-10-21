@@ -17,7 +17,7 @@ const iconGetter = (iconCode, array) => {
 };
 
 const weatherIconGetter = async (iconCode, element) => {
-  const response = await fetch(`http://openweathermap.org/img/wn/${iconCode}@2x.png`);
+  const response = await fetch(`http://openweathermap.org/img/wn/${iconCode}@2x.png`, { mode: 'cors' });
   if (iconCode === '13d' || iconCode === '50d') {
     element.style.filter = 'invert(1)';
   } else {
