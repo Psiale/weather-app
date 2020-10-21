@@ -57,7 +57,7 @@ const weatherObjectError = async (data) => {
 };
 
 const promiseToJson = async (baseUrl, searchQuery, units = 'imperial') => {
-  const apiKey = WEATHER_API;
+  const apiKey = process.env.WEATHER_API;
   const response = await fetch(`${baseUrl}q=${searchQuery}&units=${units}&appid=${apiKey}`, { mode: 'cors' });
   const data = await response.json();
   if (data.cod === '404') return weatherObjectError(data);
