@@ -55,9 +55,9 @@ const input = document.createElement('input');
 const buttonContainer = DomManipulation.elementGenerator('div', 'buttonContainer');
 const button = document.createElement('button');
 button.id = 'apiButton';
-button.textContent = 'WEATHER!';
+button.textContent = 'Search';
 input.id = 'apiInput';
-input.placeholder = 'Search a new city';
+input.placeholder = 'Somewhere only we know';
 buttonContainer.append(button);
 inputContainer.append(input);
 searchBarContainer.append(inputContainer, buttonContainer);
@@ -65,7 +65,7 @@ const img = document.createElement('img');
 imgContainer.id = 'imgContainer';
 img.id = 'imgAPI';
 ApiCall.imgCreator(imgContainer, img, search);
-cityNameContainer.append(DomManipulation.textGenerator('Search a city'));
+cityNameContainer.append(DomManipulation.textGenerator('Weather app'));
 const baseUrl = 'https://api.openweathermap.org/data/2.5/weather?';
 button.addEventListener('click', () => {
   cityNameContainer.innerHTML = '';
@@ -99,7 +99,7 @@ button.addEventListener('click', () => {
           ),
         );
         mainWeather.append(DomManipulation.textGenerator(weather.mainWeather));
-        mainTemp.append(DomManipulation.textGenerator(`${weather.temp}°`));
+        mainTemp.append(DomManipulation.textGenerator(`${Math.round(weather.temp)}°`));
         toggleInput.addEventListener('click', async () => {
           weather.temp = DomManipulation.unitConverter(weather.temp, units);
           weather.tempMin = DomManipulation.unitConverter(weather.tempMin, units);
@@ -119,7 +119,7 @@ button.addEventListener('click', () => {
         weatherInfoDescriptionContainer.append(DAYTEXT,
           DomManipulation.textGenerator(weather.weatherDescription));
         tempMinMaxContainer.append(DomManipulation.textGenerator(
-          `${weather.tempMax}° / ${weather.tempMin}°`,
+          `${Math.round(weather.tempMax)}° / ${Math.round(weather.tempMin)}°`,
         ));
         weatherDescriptionContainer.append(
           weatherIconContainer, weatherInfoDescriptionContainer, tempMinMaxContainer,
