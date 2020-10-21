@@ -88,6 +88,7 @@ button.addEventListener('click', () => {
           imgContainer, img, ApiCall.iconGetter(weather.mainWeather, weatherArray),
         );
       } else {
+        toggleInput.checked = false;
         toggleContainer.append(celsiusContainer, toggleLabel, fahrenheitContainer);
         ApiCall.imgCreator(
           imgContainer, img, ApiCall.iconGetter(weather.mainWeather, weatherArray),
@@ -104,6 +105,7 @@ button.addEventListener('click', () => {
           weather.tempMin = DomManipulation.unitConverter(weather.tempMin, units);
           weather.tempMax = DomManipulation.unitConverter(weather.tempMax, units);
           units = DomManipulation.unitSwapper(units);
+          DomManipulation.toggleColor(toggleInput, units);
           mainTemp.innerHTML = '';
           tempMinMaxContainer.innerHTML = '';
           mainTemp.append(DomManipulation.textGenerator(`${weather.temp}°`));

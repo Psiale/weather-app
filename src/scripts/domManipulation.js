@@ -36,10 +36,10 @@ const textGenerator = (text) => {
 function unitConverter(value, units) {
   if (units === 'metric') {
     const result = (value * 9 / 5) + 32;
-    return Math.round((result + Number.EPSILON) * 100) / 100;
+    return Math.round(result);
   }
   const result = (value - 32) * (5 / 9);
-  return Math.round((result + Number.EPSILON) * 100) / 100;
+  return Math.round(result);
 }
 
 function unitSwapper(value) {
@@ -47,7 +47,12 @@ function unitSwapper(value) {
   console.log(value);
   return value;
 }
+const toggleColor = (toggleInput, value) => {
+  (value === 'metric') ? toggleInput.checked = false : toggleInput.checked = true;
+  console.log(value);
+}
 
 export {
   inputHandler, enterShortcut, elementGenerator, textGenerator, capitalize, unitConverter, unitSwapper,
+  toggleColor,
 };
