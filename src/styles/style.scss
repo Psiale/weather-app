@@ -4,218 +4,248 @@
 //     border: 1px red solid;
 // }
 
-html, body {
-    width: 100%;
-    height: 100%;
-    margin: 0;
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
 }
+
 #mainContainer {
-    width: 100%;
-    height: 100vh;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  background-color: #f8e2ee;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+
+  #mainContainerTopChild,
+  #mainContainerBottomChild {
     display: flex;
-    background-color: #f8e2ee;
-    flex-flow: column nowrap;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  #mainContainerTopChild {
+    width: 100%;
+    height: 35%;
+  }
+
+  #mainContainerBottomChild {
+    width: 90%;
+    height: 75%;
+  }
+
+  #searchBarContainer {
+    margin: 20px 0;
+    width: 100%;
+    display: flex;
+    height: auto;
+    flex-flow: row wrap;
+    justify-content: center;
+
+    #inputContainer {
+      width: 60%;
+      height: 94%;
+
+      input {
+        font-size: 4vw;
+        text-align: center;
+        width: 100%;
+        padding: 10px 5px;
+        border: none;
+        color: #ba176f;
+        background-color: white;
+        border-radius: 8px;
+
+        &:focus {
+          outline: none;
+          border: none;
+        }
+
+        &::placeholder {
+          font-family: 'Roboto-Slab-Regular', serif;
+          font-size: 4vw;
+          color: grey;
+          text-align: center;
+        }
+      }
+    }
+
+    #buttonContainer {
+      width: 20%;
+      height: 91%;
+      margin: 0 8px;
+      border: 0;
+
+      button {
+        font-size: 4vw;
+        background-color: #ba176f;
+        font-family: 'Roboto-Slab-Regular', serif;
+        color: white;
+        border: 0;
+        height: 100%;
+        border-bottom-right-radius: 8px;
+        border-top-right-radius: 8px;
+        width: 100%;
+        padding: 10px 5px;
+      }
+    }
+  }
+
+  #toggleContainer {
+    display: flex;
+    width: 100%;
     justify-content: center;
     align-items: center;
-    #mainContainerTopChild,
-    #mainContainerBottomChild {
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
+
+    .tempText {
+      font-family: 'Roboto-Slab-Regular', serif;
+      font-size: 6vw;
     }
 
-    #mainContainerTopChild {
-        width: 100%;
-        height: 35%;
-    }
-    #mainContainerBottomChild {
-        width: 90%;
-        height: 75%;
-    }
-    #searchBarContainer {
-        margin: 20px 0;
-        
-        width: 100%;
-        display: flex;
-        height: auto;
-        flex-flow: row wrap;
-        justify-content: center;
-        #inputContainer {
-            
-            width: 60%;
-            height: 94%;
-            input {
-                font-size: 4vw;
-                text-align: center;
-                width: 100%;
-                padding: 10px 5px;
-                border: none;
-                color: #ba176f;
-                background-color: white;
-                border-radius: 8px;
-                &:focus {
-                    outline: none;
-                    border: none;
-
-                }
-                &::placeholder {
-                    font-family: 'Roboto-Slab-Regular', serif ;                    
-                    font-size: 4vw;
-                    color: grey;
-                    text-align: center;
-                }
-            }
-        }
-        #buttonContainer {
-            width: 20%;
-            height: 91%;
-            margin: 0 8px;
-            border: 0;
-            button {
-                font-size: 4vw;
-                background-color: #ba176f;
-                font-family: 'Roboto-Slab-Regular', serif;
-                color: white;
-                border: 0;
-                height: 100%;
-                border-bottom-right-radius: 8px;
-                border-top-right-radius: 8px;
-                width: 100%;
-                padding: 10px 5px;
-            }
-        }
+    #switch {
+      position: relative;
+      display: inline-block;
+      width: 60px;
+      height: 34px;
     }
 
-    #toggleContainer {
-        display: flex;
-        width: 100%;
-        justify-content: center;
-        align-items: center;
-        .tempText {
-            font-family: 'Roboto-Slab-Regular', serif ;
-            font-size: 6vw;
-        }
-        #switch {
-            position: relative;
-            display: inline-block;
-            width: 60px;
-            height: 34px;
-        }
-        #toggleInput {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-        .slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #2f2e41ff;
-            -webkit-transition: .4s;
-            transition: .4s;
-            &::before {
-                position: absolute;
-                content: "";
-                height: 26px;
-                width: 26px;
-                left: 4px;
-                bottom: 4px;
-                background-color: white;
-                -webkit-transition: .4s;
-                transition: .4s;
-            }
-        }
-        #toggleInput:checked + .slider {
-            background-color: #ba176fff;
-        }
-        #toggleInput:focus + .slider {
-            box-shadow: 0 0 1px #2196F3;
-          }
+    #toggleInput {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
 
-        #toggleInput:checked + .slider:before {
-            -webkit-transform: translateX(26px);
-            -ms-transform: translateX(26px);
-            transform: translateX(26px);
-          }
-        .round {
-            border-radius: 34px;
-            &::before {
-                border-radius: 50%;
-            }
-        }
-        div {
-            margin: 0 10px;
-        }
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #2f2e41ff;
+      -webkit-transition: 0.4s;
+      transition: 0.4s;
+
+      &::before {
+        position: absolute;
+        content: "";
+        height: 26px;
+        width: 26px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        -webkit-transition: 0.4s;
+        transition: 0.4s;
+      }
     }
-    #mainInfoContainer {
-        height: 80%;
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        
-        #cityNameContainer {
-            font-family: 'Play-Fair-Display', serif;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            margin-bottom: 20px;
-            p {
-                padding: 0;
-                margin: 0;
-                font-size: 8vw;
-            }
-        }
-        #mainWeather {
-            font-family: 'Roboto-Slab-SemiBold', serif;
-        }
-        #mainWeather, #mainTemp {
-            width: min-content;
-            height: min-content;
-            padding-left: 20px;
-            p {
-                font-size: 7vw;
-               margin: 0;
-               padding: 0; 
-            }
-        }
+
+    #toggleInput:checked + .slider {
+      background-color: #ba176fff;
     }
-    #imgContainer {
-        width: 100%;
-        height: 40%;
-        #imgAPI {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
+
+    #toggleInput:focus + .slider {
+      box-shadow: 0 0 1px #2196f3;
     }
-    #weatherDescriptionContainer {
-        font-family: 'Roboto-Slab-Regular', serif;
-        font-size: 1.1rem;
-        border-top-left-radius: 20px;
-        border-top-right-radius: 20px;
-        background-color: #ba176f;
-        display: none;
-        height: min-content;
-        div {
-            color: white;
-            height: min-content;
-            width: 28%;
-            margin: 20px 8px;
-        }
-        #tempMinMaxContainer {
-            font-size: 1rem;
-            width: 30%;
-            height: 55%;
-            display: flex;
-            align-items: flex-end;
-        }
-        #weatherIconContainer {
-            width: max-content;
-            margin: 20px 0;
-        }
+
+    #toggleInput:checked + .slider::before {
+      -webkit-transform: translateX(26px);
+      -ms-transform: translateX(26px);
+      transform: translateX(26px);
     }
+
+    .round {
+      border-radius: 34px;
+
+      &::before {
+        border-radius: 50%;
+      }
+    }
+
+    div {
+      margin: 0 10px;
+    }
+  }
+
+  #mainInfoContainer {
+    height: 80%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    #cityNameContainer {
+      font-family: 'Play-Fair-Display', serif;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+
+      p {
+        padding: 0;
+        margin: 0;
+        font-size: 8vw;
+      }
+    }
+
+    #mainWeather {
+      font-family: 'Roboto-Slab-SemiBold', serif;
+    }
+
+    #mainWeather,
+    #mainTemp {
+      width: min-content;
+      height: min-content;
+      padding-left: 20px;
+
+      p {
+        font-size: 7vw;
+        margin: 0;
+        padding: 0;
+      }
+    }
+  }
+
+  #imgContainer {
+    width: 100%;
+    height: 40%;
+
+    #imgAPI {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+
+  #weatherDescriptionContainer {
+    font-family: 'Roboto-Slab-Regular', serif;
+    font-size: 1.1rem;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    background-color: #ba176f;
+    display: none;
+    height: min-content;
+
+    div {
+      color: white;
+      height: min-content;
+      width: 28%;
+      margin: 20px 8px;
+    }
+
+    #tempMinMaxContainer {
+      font-size: 1rem;
+      width: 30%;
+      height: 55%;
+      display: flex;
+      align-items: flex-end;
+    }
+
+    #weatherIconContainer {
+      width: max-content;
+      margin: 20px 0;
+    }
+  }
 }
