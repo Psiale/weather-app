@@ -802,10 +802,8 @@ async function apiFetcher(baseUrl, searchQuery) {
   return data.data.images.original.url;
 }
 const iconGetter = (iconCode, array) => {
-  // add the clause for else == haze
   const result = array.filter((weather) => weather.weatherName === iconCode);
   if (result.length > 0) {
-    // console.log(result.length > 0);
     return result[0].weatherImage;
   }
   return array[6].weatherImage;
@@ -927,12 +925,10 @@ function unitConverter(value, units) {
 
 function unitSwapper(value) {
   (value === 'metric') ? value = 'imperial' : value = 'metric';
-  // console.log(value);
   return value;
 }
 const toggleColor = (toggleInput, value) => {
   (value === 'metric') ? toggleInput.checked = false : toggleInput.checked = true;
-  // console.log(value);
 };
 
 

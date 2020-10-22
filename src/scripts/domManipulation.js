@@ -44,12 +44,10 @@ function unitConverter(value, units) {
 
 function unitSwapper(value) {
   (value === 'metric') ? value = 'imperial' : value = 'metric';
-  // console.log(value);
   return value;
 }
 const toggleColor = (toggleInput, value) => {
   (value === 'metric') ? toggleInput.checked = false : toggleInput.checked = true;
-  // console.log(value);
 };
 
 export {

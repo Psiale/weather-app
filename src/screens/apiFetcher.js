@@ -7,10 +7,8 @@ async function apiFetcher(baseUrl, searchQuery) {
   return data.data.images.original.url;
 }
 const iconGetter = (iconCode, array) => {
-  // add the clause for else == haze
   const result = array.filter((weather) => weather.weatherName === iconCode);
   if (result.length > 0) {
-    // console.log(result.length > 0);
     return result[0].weatherImage;
   }
   return array[6].weatherImage;

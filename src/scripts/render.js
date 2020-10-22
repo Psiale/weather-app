@@ -19,7 +19,6 @@ const weatherArray = [WeatherImage('Clouds', cloudy),
   WeatherImage('Haze', hazy),
   WeatherImage('city not found', error)];
 
-// Change all document createElement and text to use the general purpose functions
 const mainContainer = document.createElement('div');
 mainContainer.classList.add('main-container');
 mainContainer.id = 'mainContainer';
@@ -125,7 +124,6 @@ button.addEventListener('click', () => {
           weatherIconContainer, weatherInfoDescriptionContainer, tempMinMaxContainer,
         );
         mainContainerBottomChild.append(imgContainer, weatherDescriptionContainer);
-        // mainContainerTopChild.insertBefore(toggleContainer, mainContainerTopChild.childNodes[2]);
         mainInfoContainer.insertBefore(toggleContainer, mainInfoContainer.childNodes[1]);
       }
       weatherDescriptionContainer.style.display = 'flex';

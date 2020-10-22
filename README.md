@@ -40,10 +40,13 @@ If you have any issues setting up the project or you come across any unintended 
 
 If you want to make your own changes, modifications or improvements to our project, go ahead and Fork it!
 1. [Fork it](https://github.com/Psiale/weather-app/fork)
-2. Create your working branch (git checkout -b [choose-a-name])
-3. Commit your changes (git commit -am 'what this commit will fix/add/improve')
-4. Push to the branch (git push origin [chosen-name])
-5. Create a new Pull Request
+2. Install [webpack](https://webpack.js.org/guides/installation/)
+If you don't know whats webpack you can follow this [tutorial](https://www.sitepoint.com/webpack-beginner-guide/)
+3. Create your working branch (git checkout -b [choose-a-name])
+4. if you want to see your changes run on the console `npm run build` and then `npm run start`
+5. Commit your changes (git commit -m 'what this commit will fix/add/improve')
+6. Push to the branch (git push origin [chosen-name])
+7. Create a new Pull Request
 
 ## 🤟🏽😄 😛🤙🏾  Creator
 
