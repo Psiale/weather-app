@@ -1,28 +1,23 @@
-    @font-face {
-    font-family: 'Roboto-Slab-SemiBold';
-    src:
-      url('../fonts/RobotoSlab-SemiBold.woff') format('woff');
-    font-weight: 600;
-  }
-  
-  @font-face {
-    font-family: 'Roboto-Slab-Regular';
-    src:
-        url('../fonts/RobotoSlab-Regular.woff') format('woff');
-    font-weight: 400;
-  }
+@font-face {
+  font-family: 'Roboto-Slab-SemiBold';
+  src: url('../fonts/RobotoSlab-SemiBold.woff') format('woff');
+  font-weight: 600;
+}
 
-  @font-face {
-      font-family: 'Roboto-Slab-ExtraLight';
-      
-      src:
-        url('../fonts/RobotoSlab-ExtraLight.woff');
-        font-weight: 200;
-  }
+@font-face {
+  font-family: 'Roboto-Slab-Regular';
+  src: url('../fonts/RobotoSlab-Regular.woff') format('woff');
+  font-weight: 400;
+}
 
-  @font-face {
-      font-family: 'Play-Fair-Display';
-      src:
-        url('../fonts/PlayfairDisplay-ExtraBold.woff');
-        font-weight: 800;
-  }
+@font-face {
+  font-family: 'Roboto-Slab-ExtraLight';
+  src: url('../fonts/RobotoSlab-ExtraLight.woff');
+  font-weight: 200;
+}
+
+@font-face {
+  font-family: 'Play-Fair-Display';
+  src: url('../fonts/PlayfairDisplay-ExtraBold.woff');
+  font-weight: 800;
+}

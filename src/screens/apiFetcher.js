@@ -7,17 +7,15 @@ async function apiFetcher(baseUrl, searchQuery) {
   return data.data.images.original.url;
 }
 const iconGetter = (iconCode, array) => {
-  // add the clause for else == haze
   const result = array.filter((weather) => weather.weatherName === iconCode);
   if (result.length > 0) {
-    // console.log(result.length > 0);
     return result[0].weatherImage;
   }
   return array[6].weatherImage;
 };
 
 const weatherIconGetter = async (iconCode, element) => {
-  const response = await fetch(`http://openweathermap.org/img/wn/${iconCode}@2x.png`);
+  const response = await fetch(`https://openweathermap.org/img/wn/${iconCode}@2x.png`);
   if (iconCode === '13d' || iconCode === '50d') {
     element.style.filter = 'invert(1)';
   } else {
